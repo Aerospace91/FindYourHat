@@ -84,6 +84,8 @@ class Field {
 
     return field
   }
+
+  // Add Validation Checker for randomized Field
 }
 
 const myField = new Field([
@@ -92,7 +94,9 @@ const myField = new Field([
     ["░", "^", "░"],
   ]);
 
-const myField2Gen = Field.generateField(10, 10)
+const startHeight = prompt("Enter Height: ")
+const startWidth = prompt("Enter Width: ")
+const myField2Gen = Field.generateField(startHeight, startWidth)
 const myField2 = new Field(myField2Gen)
 
 while (gameState){
@@ -114,6 +118,8 @@ while (gameState){
         console.log('Invalid Input')
     }
 }
+
+// Add better Graphical interface with terminal
 
 /* 3x3  
 [
