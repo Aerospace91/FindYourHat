@@ -65,6 +65,25 @@ class Field {
         }
     }
   }
+  static generateField(height, width){
+    const field = []
+    for (let i = 0; i < height; i++){
+        const row = []
+        for(let j = 0; j < width; j++){
+            const randomValue = Math.random() < 0.8 ? fieldCharacter : hole
+            row.push(randomValue)
+        }
+        field.push(row)
+    }
+    let y = Math.floor(Math.random() * height)
+    let x = Math.floor(Math.random() * width)
+    field[x][y] = pathCharacter
+    y = Math.floor(Math.random() * height)
+    x = Math.floor(Math.random() * width)
+    field[x][y] = hat
+
+    return field
+  }
 }
 
 const myField = new Field([
@@ -73,14 +92,17 @@ const myField = new Field([
     ["░", "^", "░"],
   ]);
 
+const myField2Gen = Field.generateField(10, 10)
+const myField2 = new Field(myField2Gen)
+
 while (gameState){
-    myField.print();
+    myField2.print();
     const input = prompt("Make your move (u, d, l, r, exit): ")
     if (input === 'exit'){
         gameState = false
         break;
     }else if (['u', 'd', 'l', 'r'].includes(input)){
-        const move = myField.makeMove(input)
+        const move = myField2.makeMove(input)
         if (move === 0){
             console.log("You Lost!")
             gameState = false
